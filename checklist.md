@@ -4,9 +4,11 @@
     [✅] Step 1: Make our database 
     [✅] Step 2: Set project 
     []   Step 3: Make a Search View Page
-                [] Make a new component called SearchView/etc.
+                [✅] Make a new component called SearchView/etc.
+                [] Make a router to talk to API/GIPHY
+                [] https://api.giphy.com/v1/gifs/search
                 [] Create a dropdown box of current categories for user to select from 
-                [] Create a favorite button next to dropdown box 
+                [] Create a search button next to dropdown box 
                 [] Use 'Giphy API Search Endpoint' FROM server for search results
                 [] Display results on DOM: create a return code block on our component function
                 [] Allow user to set a category for a favorite image
@@ -21,8 +23,9 @@
                 [] Allow user to see all Gifs favorited 
                 [] Render the images on the DOM
                 [] Make sure our database is updated accordingly base on the selected category
-                    
-           
-        
 
-[] 
+
+
+
+
+API_KEY: D21vx19bXWgdDGfi2JiVmbcAWCTh6XLb
