@@ -5,7 +5,7 @@
     [✅] Step 2: Set project 
     []   Step 3: Make a Search View Page
                 [✅] Make a new component called SearchView/etc.
-                [] Make a router to talk to API/GIPHY
+                [✅] Make a router to talk to API/GIPHY
                 [] https://api.giphy.com/v1/gifs/search
                 [] Create a dropdown box of current categories for user to select from 
                 [] Create a search button next to dropdown box 

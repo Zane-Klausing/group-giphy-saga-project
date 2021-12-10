@@ -5,12 +5,21 @@ import {useEffect} from 'react'
 
 function SearchView(){
     const dispatch = useDispatch();
-
-    const [newImage, setNewImage] = useState('');
+    let gifReducer = useSelector((store) => store.gifReducer);
+    const [newImage, setNewImage] = useState({});
+    const [newSearch, setSearch] = useState('');
     useEffect(() => {
         handleSearch()
         },[]
     )
+
+    function readyNewImage (event){
+
+        setNewImage(gifReducer) 
+        return(
+            <img src={newImage.data}></img>
+        )
+    }
 
 
     function setFavoriteCategory(category){
@@ -30,18 +39,27 @@ function SearchView(){
         }
     }
 
-    function handleSearch () {
+    const handleSearch = () =>{
         dispatch({
             type:'FETCH_GIF',
             // payload: newSearch // This is the phrase/word that the user search
         })
+        console.log('THIS IS THE NEW IMAGE', newImage);
     }
-    // setNewImage (useSelector((store) => store.gifReducer));
-    return (
 
+    // Starting a POST for Search router
+    const sendRequest = () => {
+        dispatch({
+        type: 'SEARCH_GIF',
+        payload: newSearch
+        })
+        console.log('DISPATCHED SEARCH')
+    };
+
+return (
         <div>
-                <form onSubmit={()=>{handleSearch()}}>
-                <input onChange={e => setFavoriteCategory(Funny)} type="radio" id="Funny" name="order_type" value="funny"/>
+                <form onSubmit={()=>{sendRequest()}}>
+                {/* <input onChange={e => setFavoriteCategory(Funny)} type="radio" id="Funny" name="order_type" value="funny"/>
                     <label for="Funny">Funny</label>
                 <input onChange={e => setFavoriteCategory(Cohort)} type="radio" id="Cohort" name="order_type" value="cohort"/>
                     <label for="Cohort">Cohort</label>
@@ -50,14 +68,17 @@ function SearchView(){
                 <input onChange={e => setFavoriteCategory(Nsfw)} type="radio" id="Nsfw" name="order_type" value="nsfw"/>
                     <label for="Nsfw">NSFW</label>
                 <input onChange={e => setFavoriteCategory(Meme)} type="radio" id="Meme" name="order_type" value="meme"/>
-                    <label for="Meme">Meme</label>
+                    <label for="Meme">Meme</label> */}
+                <input
+                    placeholder="search gifs"
+                    type="text"
+                    value={newSearch}
+                    onChange={e => setSearch(e.target.value)}
+                />
+                <button>Search</button>
                 </form>
-                {/* <img src={newImage.data}></img> */}
-        </div>
-    )
-
-}
-
-
-
+                {gifReducer.data ? gifReducer.data.map(gif => (<img id={newSearch}src={gif.images['480w_still'].url}></img>)): null}
+                </div>
+                )
+            }
 export default SearchView;
